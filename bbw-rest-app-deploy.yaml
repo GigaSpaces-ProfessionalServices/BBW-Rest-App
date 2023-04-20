@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: bbw-rest-app
+spec:
+  selector:
+    matchLabels:
+      app: bbw-rest-app
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: bbw-rest-app
+    spec:
+      containers:
+        - env:
+          - name: manager.host
+            valueFrom:
+              configMapKeyRef:
+                name: bbw-rest-app-config
+                key: manager.host
+          image: niharkapadia/bbw-rest-app:1.0
+          imagePullPolicy: Always
+          name: bbw-rest-app
+          ports:
+            - containerPort: 8080

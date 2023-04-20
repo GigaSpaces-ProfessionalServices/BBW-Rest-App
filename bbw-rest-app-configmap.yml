@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: bbw-rest-app-config
+data:
+  manager.host: 10.0.82.147
